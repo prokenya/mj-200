@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=3 uid="uid://dslif5huxaljs"]
+
+[ext_resource type="Script" uid="uid://dntp11sm0aty7" path="res://src/main.gd" id="1_eewff"]
+[ext_resource type="Shader" uid="uid://cleetaom2e82n" path="res://src/shaders/space.gdshader" id="2_gh0ne"]
+[ext_resource type="PackedScene" uid="uid://cb0to8i30bvgx" path="res://src/objects/Endgame.tscn" id="3_3cfgd"]
+[ext_resource type="PackedScene" uid="uid://ty4ko6dnkkvp" path="res://joints.tscn" id="4_fyndt"]
+[ext_resource type="PackedScene" uid="uid://bvxg0q5bviegk" path="res://src/objects/element.tscn" id="4_kmhfv"]
+[ext_resource type="PackedScene" uid="uid://w6bl5u8kmgtd" path="res://src/objects/Dormant.tscn" id="6_kmhfv"]
+[ext_resource type="PackedScene" uid="uid://dhrxp7j1jqxes" path="res://src/objects/merger.tscn" id="6_rlaii"]
+
+[sub_resource type="Gradient" id="Gradient_gh0ne"]
+colors = PackedColorArray(0.5568628, 0, 0, 1, 0.2, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5q4o7"]
+noise_type = 3
+frequency = 0.0251
+fractal_octaves = 10
+fractal_lacunarity = 6.965
+fractal_gain = 0.31
+fractal_weighted_strength = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3cfgd"]
+noise = SubResource("FastNoiseLite_5q4o7")
+color_ramp = SubResource("Gradient_gh0ne")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5q4o7"]
+shader = ExtResource("2_gh0ne")
+shader_parameter/stars_on = true
+shader_parameter/stars_flicker = true
+shader_parameter/timeScaleFactor = 0.04
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_3cfgd")
+shader_parameter/colour_muiltiplier = Color(1, 1, 1, 1)
+shader_parameter/colour_muiltiplier2 = Color(0.21739775, 9.62615e-07, 0.9923368, 1)
+shader_parameter/brightness = 1.3030000618925
+shader_parameter/clouds_resolution = 10.0
+shader_parameter/clouds_intesity = 0.0
+shader_parameter/waveyness = 0.5
+shader_parameter/fragmentation = 7.0
+shader_parameter/distortion = 1.5
+shader_parameter/clouds_alpha = 0.5
+shader_parameter/movement = 1.3
+shader_parameter/blur = 1.4000000665
+shader_parameter/blur2 = 0.01
+shader_parameter/bg_speed = 0.1
+shader_parameter/mid_speed = 0.5
+shader_parameter/fg_speed = 1.0
+
+[node name="Main" type="Node"]
+script = ExtResource("1_eewff")
+
+[node name="world" type="Node2D" parent="."]
+
+[node name="BG" type="CanvasLayer" parent="world"]
+layer = -255
+
+[node name="ColorRect" type="ColorRect" parent="world/BG"]
+material = SubResource("ShaderMaterial_5q4o7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="objects" type="Node2D" parent="world"]
+
+[node name="EndGame" parent="world/objects" instance=ExtResource("3_3cfgd")]
+position = Vector2(322, 275)
+
+[node name="Element" parent="world/objects" instance=ExtResource("4_kmhfv")]
+position = Vector2(215, 348)
+
+[node name="Element2" parent="world/objects" instance=ExtResource("4_kmhfv")]
+position = Vector2(587, 423)
+
+[node name="Dormant" parent="world/objects" instance=ExtResource("6_kmhfv")]
+position = Vector2(474, 329)
+
+[node name="Merger" parent="world/objects" instance=ExtResource("6_rlaii")]
+position = Vector2(379, 410)
+
+[node name="joints" parent="world" instance=ExtResource("4_fyndt")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -21.0
+offset_top = 12.0
+offset_right = -21.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2

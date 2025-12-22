@@ -1,0 +1,2 @@
+extends SpaceObject
+class_name Dormant

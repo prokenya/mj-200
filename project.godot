@@ -22,7 +22,13 @@ window/size/viewport_height=540
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/script-ide/plugin.cfg", "res://addons/simple_gdscript_formatter/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://src/objects/": "red"
+}
 
 [input]
 
@@ -63,7 +69,6 @@ lmb={
 
 [physics]
 
-2d/physics_engine="Box2D"
 2d/default_gravity=0.0
 2d/default_gravity_vector=Vector2(0, 0)
 2d/solver/default_constraint_bias=0.0

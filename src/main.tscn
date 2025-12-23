@@ -78,6 +78,15 @@ position = Vector2(474, 329)
 [node name="Merger" parent="world/objects" instance=ExtResource("6_rlaii")]
 position = Vector2(379, 410)
 
+[node name="Merger2" parent="world/objects" instance=ExtResource("6_rlaii")]
+position = Vector2(236, 415)
+
+[node name="Merger3" parent="world/objects" instance=ExtResource("6_rlaii")]
+position = Vector2(302, 338)
+
+[node name="Merger4" parent="world/objects" instance=ExtResource("6_rlaii")]
+position = Vector2(304, 472)
+
 [node name="joints" parent="world" instance=ExtResource("4_fyndt")]
 
 [node name="UI" type="CanvasLayer" parent="."]

@@ -6,9 +6,10 @@ extends SpaceObject
 
 func _ready() -> void:
 	super()
-	object_connected.connect(func(obj): check_condition())
+	signal_strength_updated.connect(check_condition)
 
 
 func check_condition():
 	if signal_strength == target_strength:
 		print("connected")
+		G.main.next_world()

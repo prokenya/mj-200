@@ -1,11 +1,27 @@
 extends Node
+class_name Main
+@export var worlds:Array[PackedScene]
+@onready var world:Node2D
+@export var gui:GUI
+@export var current_world_id:int = 0
 
+func  _ready() -> void:
+	G.main = self
+	gui.set_levels(worlds)
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func load_world(index:int = 0):
+	get_tree().paused = true
+	var instace = worlds[index].instantiate()
+	if world:
+		world.queue_free()
+		await get_tree().process_frame
+	world = instace
+	add_child(world)
+	get_tree().paused = false
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func next_world():
+	current_world_id += 1
+	if 	current_world_id > worlds.size() -1:
+		gui.show_end()
+		return
+	gui.load_game(current_world_id)

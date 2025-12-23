@@ -1,12 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dslif5huxaljs"]
+[gd_scene load_steps=15 format=3 uid="uid://dslif5huxaljs"]
 
 [ext_resource type="Script" uid="uid://dntp11sm0aty7" path="res://src/main.gd" id="1_eewff"]
+[ext_resource type="PackedScene" uid="uid://bi4ejxu0n4pqx" path="res://src/levels/level1.tscn" id="2_fyndt"]
 [ext_resource type="Shader" uid="uid://cleetaom2e82n" path="res://src/shaders/space.gdshader" id="2_gh0ne"]
-[ext_resource type="PackedScene" uid="uid://cb0to8i30bvgx" path="res://src/objects/Endgame.tscn" id="3_3cfgd"]
+[ext_resource type="PackedScene" uid="uid://bw5e436nk66b7" path="res://src/levels/level2.tscn" id="3_kmhfv"]
 [ext_resource type="PackedScene" uid="uid://ty4ko6dnkkvp" path="res://joints.tscn" id="4_fyndt"]
-[ext_resource type="PackedScene" uid="uid://bvxg0q5bviegk" path="res://src/objects/element.tscn" id="4_kmhfv"]
-[ext_resource type="PackedScene" uid="uid://w6bl5u8kmgtd" path="res://src/objects/Dormant.tscn" id="6_kmhfv"]
-[ext_resource type="PackedScene" uid="uid://dhrxp7j1jqxes" path="res://src/objects/merger.tscn" id="6_rlaii"]
+[ext_resource type="Script" uid="uid://cfestdygkcijx" path="res://src/ui/ui.gd" id="9_mgm53"]
 
 [sub_resource type="Gradient" id="Gradient_gh0ne"]
 colors = PackedColorArray(0.5568628, 0, 0, 1, 0.2, 1, 1, 1)
@@ -45,15 +44,177 @@ shader_parameter/bg_speed = 0.1
 shader_parameter/mid_speed = 0.5
 shader_parameter/fg_speed = 1.0
 
-[node name="Main" type="Node"]
+[sub_resource type="Animation" id="Animation_kmhfv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer/ui/NinePatchRect:patch_margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [200]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HBoxContainer/ui/NinePatchRect/menu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HBoxContainer/ui/NinePatchRect/menu:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HBoxContainer/guide/NinePatchRect:patch_margin_right")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HBoxContainer/guide/VBoxContainer:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HBoxContainer/guide/VBoxContainer:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rlaii"]
+resource_name = "show guide"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer/guide/NinePatchRect:patch_margin_right")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 430]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HBoxContainer/guide/VBoxContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HBoxContainer/guide/VBoxContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fyndt"]
+resource_name = "show menu"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer/ui/NinePatchRect:patch_margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 200]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HBoxContainer/ui/NinePatchRect/menu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 1.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HBoxContainer/ui/NinePatchRect/menu:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rlaii"]
+_data = {
+&"RESET": SubResource("Animation_kmhfv"),
+&"show guide": SubResource("Animation_rlaii"),
+&"show menu": SubResource("Animation_fyndt")
+}
+
+[node name="Main" type="Node" node_paths=PackedStringArray("gui")]
 script = ExtResource("1_eewff")
+worlds = Array[PackedScene]([ExtResource("2_fyndt"), ExtResource("3_kmhfv")])
+gui = NodePath("GUI/gui")
 
-[node name="world" type="Node2D" parent="."]
-
-[node name="BG" type="CanvasLayer" parent="world"]
+[node name="BG" type="CanvasLayer" parent="."]
 layer = -255
 
-[node name="ColorRect" type="ColorRect" parent="world/BG"]
+[node name="ColorRect" type="ColorRect" parent="BG"]
 material = SubResource("ShaderMaterial_5q4o7")
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,44 +222,196 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="objects" type="Node2D" parent="world"]
+[node name="GUI" type="CanvasLayer" parent="."]
+layer = 128
 
-[node name="EndGame" parent="world/objects" instance=ExtResource("3_3cfgd")]
-position = Vector2(322, 275)
-
-[node name="Element" parent="world/objects" instance=ExtResource("4_kmhfv")]
-position = Vector2(215, 348)
-
-[node name="Element2" parent="world/objects" instance=ExtResource("4_kmhfv")]
-position = Vector2(587, 423)
-
-[node name="Dormant" parent="world/objects" instance=ExtResource("6_kmhfv")]
-position = Vector2(474, 329)
-
-[node name="Merger" parent="world/objects" instance=ExtResource("6_rlaii")]
-position = Vector2(379, 410)
-
-[node name="Merger2" parent="world/objects" instance=ExtResource("6_rlaii")]
-position = Vector2(236, 415)
-
-[node name="Merger3" parent="world/objects" instance=ExtResource("6_rlaii")]
-position = Vector2(302, 338)
-
-[node name="Merger4" parent="world/objects" instance=ExtResource("6_rlaii")]
-position = Vector2(304, 472)
-
-[node name="joints" parent="world" instance=ExtResource("4_fyndt")]
-
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="UI"]
+[node name="gui" type="Control" parent="GUI"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -21.0
-offset_top = 12.0
-offset_right = -21.0
-offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("9_mgm53")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/gui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="guide" type="PanelContainer" parent="GUI/gui/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/gui/HBoxContainer/guide"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GUI/gui/HBoxContainer/guide/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Controls:
+	LMB - connect objectss
+	RMB - cut wire
+    M / Esc– Show Menu 
+
+[color=red]Hints:[/color]
+
+[color=green]About the game:[/color]
+"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GUI/gui/HBoxContainer/guide"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="ui" type="PanelContainer" parent="GUI/gui/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GUI/gui/HBoxContainer/ui"]
+layout_mode = 2
+patch_margin_left = 200
+
+[node name="menu" type="VBoxContainer" parent="GUI/gui/HBoxContainer/ui/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Container" type="Container" parent="GUI/gui/HBoxContainer/ui/NinePatchRect/menu"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="resume button" type="Button" parent="GUI/gui/HBoxContainer/ui/NinePatchRect/menu"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+text = "resume"
+
+[node name="Play" type="Button" parent="GUI/gui/HBoxContainer/ui/NinePatchRect/menu"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+text = "play"
+
+[node name="how to play" type="Button" parent="GUI/gui/HBoxContainer/ui/NinePatchRect/menu"]
+layout_mode = 2
+focus_mode = 0
+text = "how to play"
+
+[node name="main_menu_button" type="Button" parent="GUI/gui/HBoxContainer/ui/NinePatchRect/menu"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+text = "main menu"
+
+[node name="HSeparator2" type="HSeparator" parent="GUI/gui/HBoxContainer/ui/NinePatchRect/menu"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/gui/HBoxContainer/ui/NinePatchRect/menu"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.3
+
+[node name="levels" type="VBoxContainer" parent="GUI/gui/HBoxContainer/ui/NinePatchRect/menu/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HSeparator" type="HSeparator" parent="GUI/gui/HBoxContainer/ui/NinePatchRect/menu"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/gui/HBoxContainer/ui/NinePatchRect/menu"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="GUI/gui/HBoxContainer/ui/NinePatchRect/menu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 2
+
+[node name="Label" type="Label" parent="GUI/gui/HBoxContainer/ui/NinePatchRect/menu/VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "sfx"
+horizontal_alignment = 2
+
+[node name="SFXSpinBox" type="SpinBox" parent="GUI/gui/HBoxContainer/ui/NinePatchRect/menu/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_stretch_ratio = 0.5
+alignment = 1
+
+[node name="Label2" type="Label" parent="GUI/gui/HBoxContainer/ui/NinePatchRect/menu/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "music"
+horizontal_alignment = 2
+
+[node name="music_spin_box" type="SpinBox" parent="GUI/gui/HBoxContainer/ui/NinePatchRect/menu/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+alignment = 1
+
+[node name="guianimation" type="AnimationPlayer" parent="GUI/gui"]
+libraries = {
+&"": SubResource("AnimationLibrary_rlaii")
+}
+speed_scale = 5.0
+
+[node name="transirion layer" type="CanvasLayer" parent="GUI"]
+layer = 128
+
+[node name="transition" type="ColorRect" parent="GUI/transirion layer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="end" type="CanvasLayer" parent="GUI"]
+layer = 128
+
+[node name="end" type="PanelContainer" parent="GUI/end"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GUI/end/end"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 45
+text = "the end!
+thanks for playing"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="joints" parent="." instance=ExtResource("4_fyndt")]
+
+[connection signal="pressed" from="GUI/gui/HBoxContainer/ui/NinePatchRect/menu/resume button" to="GUI/gui" method="open_close_menu"]
+[connection signal="pressed" from="GUI/gui/HBoxContainer/ui/NinePatchRect/menu/Play" to="GUI/gui" method="_on_play_pressed"]
+[connection signal="pressed" from="GUI/gui/HBoxContainer/ui/NinePatchRect/menu/how to play" to="GUI/gui" method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="GUI/gui/HBoxContainer/ui/NinePatchRect/menu/main_menu_button" to="GUI/gui" method="_on_main_menu_pressed"]
+[connection signal="value_changed" from="GUI/gui/HBoxContainer/ui/NinePatchRect/menu/VBoxContainer/GridContainer/SFXSpinBox" to="GUI/gui" method="_on_spinsfx_value_changed"]
+[connection signal="value_changed" from="GUI/gui/HBoxContainer/ui/NinePatchRect/menu/VBoxContainer/GridContainer/music_spin_box" to="GUI/gui" method="_on_spinmusic_value_changed"]

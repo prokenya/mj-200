@@ -5,7 +5,7 @@ extends Node2D
 
 var connection_state: bool = false
 var cut_state: bool = false
-var cut_start_position:Vector2
+var cut_start_position: Vector2
 
 @onready var node_a: SpaceObject
 @onready var node_b: SpaceObject
@@ -40,20 +40,18 @@ func _input(event: InputEvent) -> void:
 
 		node_a = object
 		connection_state = true
-	
-	
+
 	if event.is_action_pressed("rmb"):
 		if connection_state:
 			reset()
 		if cut_state:
-			var wire = get_wire_intersection(cut_start_position,scope.global_position)
+			var wire = get_wire_intersection(cut_start_position, scope.global_position)
 			if wire:
 				wire.cut()
 			reset()
 			return
 		cut_state = true
 		cut_start_position = get_global_mouse_position()
-		
 
 
 func reset():
@@ -69,9 +67,8 @@ func create_line():
 	if node_b.max_input_count <= node_b.input.size(): return
 	if node_a.max_output_count <= node_a.output.size(): return
 
-
 	var dir := (node_b.global_position - node_a.global_position).normalized()
-	if get_wire_intersection(node_a.global_position + dir * 12.0,node_b.global_position - dir * 12.0):return
+	if get_wire_intersection(node_a.global_position + dir * 12.0, node_b.global_position - dir * 12.0): return
 
 	node_b.connect_object(node_a, true)
 	node_a.connect_object(node_b, false)
@@ -79,7 +76,8 @@ func create_line():
 	wire.objects.append_array([node_a, node_b])
 	node_a.add_child(wire)
 
-func get_wire_intersection(start:Vector2,end:Vector2) -> Node2D:
+
+func get_wire_intersection(start: Vector2, end: Vector2) -> Node2D:
 	check_cast.global_position = start
 	check_cast.target_position = check_cast.to_local(end)
 	check_cast.force_raycast_update()

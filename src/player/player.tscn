@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://ca5qyspdccboo"]
+[gd_scene load_steps=13 format=4 uid="uid://ca5qyspdccboo"]
 
-[ext_resource type="Script" uid="uid://cw5q5kfrg5mn7" path="res://src/player/player.gd" id="1_lowyb"]
-[ext_resource type="Texture2D" uid="uid://cwq8fy2o7woj0" path="res://assets/arrow.png" id="2_gmfve"]
-[ext_resource type="Texture2D" uid="uid://b3k1kfxkxy0s4" path="res://assets/part1.png" id="3_ehvfd"]
+[ext_resource type="Script" uid="uid://cw5q5kfrg5mn7" path="res://src/player/player.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cwq8fy2o7woj0" path="res://assets/arrow.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://b3k1kfxkxy0s4" path="res://assets/part1.png" id="3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mf2ua"]
 size = Vector2(32, 32)
@@ -43,7 +43,7 @@ width = 32
 height = 32
 
 [node name="player" type="RigidBody2D" node_paths=PackedStringArray("particles")]
-script = ExtResource("1_lowyb")
+script = ExtResource("1")
 particles = NodePath("fire")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -53,7 +53,7 @@ shape = SubResource("RectangleShape2D_mf2ua")
 modulate = Color(1, 1, 1, 0.39215687)
 position = Vector2(-1.0842022e-19, 7.6293945e-06)
 scale = Vector2(0.215, 0.215)
-texture = ExtResource("2_gmfve")
+texture = ExtResource("2")
 offset = Vector2(4.230208e-12, -530.23267)
 
 [node name="gravity" type="Area2D" parent="."]
@@ -72,7 +72,7 @@ position = Vector2(1.2924697e-26, -9.094947e-13)
 rotation = 1.5707964
 scale = Vector2(0.5, 0.5)
 amount = 32
-texture = ExtResource("3_ehvfd")
+texture = ExtResource("3")
 lifetime = 0.45
 randomness = 1.0
 fixed_fps = 60

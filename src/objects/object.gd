@@ -15,9 +15,9 @@ signal signal_strength_updated()
 @onready var label
 
 
-func _ready() -> void:
+func _ready() -> void :
 	label = Label.new()
-	#label.position = self.global_position
+	label.position += Vector2(0,12)
 	add_child(label)
 
 
@@ -38,7 +38,7 @@ func update_connections(visited: Array[SpaceObject] = []) -> int:
 
 	visited.append(self)
 
-	var sum := 0
+	var sum: = 0
 	for connected in input:
 		sum += connected.signal_strength
 

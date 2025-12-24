@@ -1,34 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://bi4ejxu0n4pqx"]
+[gd_scene load_steps=4 format=4 uid="uid://bi4ejxu0n4pqx"]
 
-[ext_resource type="PackedScene" uid="uid://cb0to8i30bvgx" path="res://src/objects/Endgame.tscn" id="1_ih7hf"]
-[ext_resource type="PackedScene" uid="uid://bvxg0q5bviegk" path="res://src/objects/element.tscn" id="2_ghtb1"]
-[ext_resource type="PackedScene" uid="uid://w6bl5u8kmgtd" path="res://src/objects/Dormant.tscn" id="3_bn18y"]
-[ext_resource type="PackedScene" uid="uid://dhrxp7j1jqxes" path="res://src/objects/merger.tscn" id="4_tyup7"]
+[ext_resource type="PackedScene" uid="uid://cb0to8i30bvgx" path="res://src/objects/Endgame.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://bvxg0q5bviegk" path="res://src/objects/element.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://dhrxp7j1jqxes" path="res://src/objects/merger.tscn" id="3"]
 
 [node name="world" type="Node2D"]
 
 [node name="objects" type="Node2D" parent="."]
 
-[node name="EndGame" parent="objects" instance=ExtResource("1_ih7hf")]
+[node name="EndGame" parent="objects" instance=ExtResource("1")]
 position = Vector2(322, 275)
+target_strength = 2
 
-[node name="Element" parent="objects" instance=ExtResource("2_ghtb1")]
+[node name="Element" parent="objects" instance=ExtResource("2")]
 position = Vector2(215, 348)
 
-[node name="Element2" parent="objects" instance=ExtResource("2_ghtb1")]
+[node name="Element2" parent="objects" instance=ExtResource("2")]
 position = Vector2(587, 423)
 
-[node name="Dormant" parent="objects" instance=ExtResource("3_bn18y")]
-position = Vector2(474, 329)
-
-[node name="Merger" parent="objects" instance=ExtResource("4_tyup7")]
+[node name="Merger" parent="objects" instance=ExtResource("3")]
 position = Vector2(379, 410)
 
-[node name="Merger2" parent="objects" instance=ExtResource("4_tyup7")]
-position = Vector2(236, 415)
-
-[node name="Merger3" parent="objects" instance=ExtResource("4_tyup7")]
-position = Vector2(302, 338)
-
-[node name="Merger4" parent="objects" instance=ExtResource("4_tyup7")]
-position = Vector2(304, 472)
+[node name="Label" type="Label" parent="objects"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Give 2 signal strength to module 3"

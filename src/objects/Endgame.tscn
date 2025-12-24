@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cb0to8i30bvgx"]
+[gd_scene load_steps=4 format=4 uid="uid://cb0to8i30bvgx"]
 
-[ext_resource type="Script" uid="uid://1fpbly6358gq" path="res://src/objects/Endgame.gd" id="1_midy2"]
-[ext_resource type="Texture2D" uid="uid://dhcr420mgedn" path="res://assets/objects.png" id="2_midy2"]
+[ext_resource type="Script" uid="uid://1fpbly6358gq" path="res://src/objects/Endgame.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://d0npoqjbaibui" path="res://assets/zero-one-two-three.png" id="2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_11ogx"]
 size = Vector2(32, 32)
 
 [node name="EndGame" type="Area2D"]
-script = ExtResource("1_midy2")
+script = ExtResource("1")
 max_output_count = 0
 metadata/_custom_type_script = "uid://droigvofnlerk"
 
@@ -15,6 +15,7 @@ metadata/_custom_type_script = "uid://droigvofnlerk"
 shape = SubResource("RectangleShape2D_11ogx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_midy2")
-region_enabled = true
-region_rect = Rect2(64, 0, 32, 32)
+scale = Vector2(2, 2)
+texture = ExtResource("2")
+hframes = 4
+frame = 3

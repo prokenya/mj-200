@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvxg0q5bviegk"]
+[gd_scene load_steps=4 format=4 uid="uid://bvxg0q5bviegk"]
 
-[ext_resource type="Script" uid="uid://b0vk0qimmpqer" path="res://src/objects/element.gd" id="1_vkpe1"]
-[ext_resource type="Texture2D" uid="uid://dhcr420mgedn" path="res://assets/objects.png" id="2_aw2cq"]
+[ext_resource type="Script" uid="uid://b0vk0qimmpqer" path="res://src/objects/element.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://d0npoqjbaibui" path="res://assets/zero-one-two-three.png" id="2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_11ogx"]
 size = Vector2(32, 32)
 
 [node name="Element" type="Area2D"]
-script = ExtResource("1_vkpe1")
+script = ExtResource("1")
 max_input_count = 0
 signal_strength = 1
 metadata/_custom_type_script = "uid://droigvofnlerk"
@@ -16,6 +16,6 @@ metadata/_custom_type_script = "uid://droigvofnlerk"
 shape = SubResource("RectangleShape2D_11ogx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_aw2cq")
-region_enabled = true
-region_rect = Rect2(96, 0, 32, 32)
+scale = Vector2(2, 2)
+texture = ExtResource("2")
+hframes = 4

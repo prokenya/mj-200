@@ -1,14 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://dslif5huxaljs"]
+[gd_scene load_steps=20 format=3 uid="uid://dslif5huxaljs"]
 
-[ext_resource type="Script" uid="uid://dntp11sm0aty7" path="res://src/main.gd" id="1_eewff"]
-[ext_resource type="PackedScene" uid="uid://bi4ejxu0n4pqx" path="res://src/levels/level1.tscn" id="2_fyndt"]
-[ext_resource type="Shader" uid="uid://cleetaom2e82n" path="res://src/shaders/space.gdshader" id="2_gh0ne"]
-[ext_resource type="PackedScene" uid="uid://bw5e436nk66b7" path="res://src/levels/level2.tscn" id="3_kmhfv"]
-[ext_resource type="PackedScene" uid="uid://ty4ko6dnkkvp" path="res://joints.tscn" id="4_fyndt"]
-[ext_resource type="Script" uid="uid://cfestdygkcijx" path="res://src/ui/ui.gd" id="9_mgm53"]
+[ext_resource type="Script" uid="uid://dntp11sm0aty7" path="res://src/main.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://bi4ejxu0n4pqx" path="res://src/levels/level1.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://bw5e436nk66b7" path="res://src/levels/level2.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://b3clsc2mj417e" path="res://src/levels/level3.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://3jsr271c74j5" path="res://src/levels/level4.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://dgb4q0dinq4rh" path="res://src/levels/level5.tscn" id="6"]
+[ext_resource type="Shader" uid="uid://cleetaom2e82n" path="res://src/shaders/space.gdshader" id="7"]
+[ext_resource type="Script" uid="uid://cfestdygkcijx" path="res://src/ui/ui.gd" id="8"]
+[ext_resource type="PackedScene" uid="uid://ty4ko6dnkkvp" path="res://src/joints.tscn" id="9"]
+[ext_resource type="AudioStream" uid="uid://cg1g6neixulwh" path="res://assets/Untitled song (51).mp3" id="10_mgm53"]
 
 [sub_resource type="Gradient" id="Gradient_gh0ne"]
-colors = PackedColorArray(0.5568628, 0, 0, 1, 0.2, 1, 1, 1)
+colors = PackedColorArray(0.556863, 0, 0, 1, 0.2, 1, 1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_5q4o7"]
 noise_type = 3
@@ -23,14 +27,14 @@ noise = SubResource("FastNoiseLite_5q4o7")
 color_ramp = SubResource("Gradient_gh0ne")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5q4o7"]
-shader = ExtResource("2_gh0ne")
+shader = ExtResource("7")
 shader_parameter/stars_on = true
 shader_parameter/stars_flicker = true
 shader_parameter/timeScaleFactor = 0.04
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_3cfgd")
 shader_parameter/colour_muiltiplier = Color(1, 1, 1, 1)
-shader_parameter/colour_muiltiplier2 = Color(0.21739775, 9.62615e-07, 0.9923368, 1)
-shader_parameter/brightness = 1.3030000618925
+shader_parameter/colour_muiltiplier2 = Color(0.217398, 9.62615e-07, 0.992337, 1)
+shader_parameter/brightness = 1.303
 shader_parameter/clouds_resolution = 10.0
 shader_parameter/clouds_intesity = 0.0
 shader_parameter/waveyness = 0.5
@@ -38,11 +42,13 @@ shader_parameter/fragmentation = 7.0
 shader_parameter/distortion = 1.5
 shader_parameter/clouds_alpha = 0.5
 shader_parameter/movement = 1.3
-shader_parameter/blur = 1.4000000665
+shader_parameter/blur = 1.4
 shader_parameter/blur2 = 0.01
 shader_parameter/bg_speed = 0.1
 shader_parameter/mid_speed = 0.5
 shader_parameter/fg_speed = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_kmhfv"]
 
 [sub_resource type="Animation" id="Animation_kmhfv"]
 length = 0.001
@@ -207,8 +213,8 @@ _data = {
 }
 
 [node name="Main" type="Node" node_paths=PackedStringArray("gui")]
-script = ExtResource("1_eewff")
-worlds = Array[PackedScene]([ExtResource("2_fyndt"), ExtResource("3_kmhfv")])
+script = ExtResource("1")
+worlds = Array[PackedScene]([ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5"), ExtResource("6")])
 gui = NodePath("GUI/gui")
 
 [node name="BG" type="CanvasLayer" parent="."]
@@ -232,7 +238,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("9_mgm53")
+script = ExtResource("8")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/gui"]
 layout_mode = 1
@@ -258,14 +264,33 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 bbcode_enabled = true
 text = "Controls:
-	LMB - connect objectss
+	LMB - connect objects
 	RMB - cut wire
     M / Esc– Show Menu 
 
-[color=red]Hints:[/color]
-
 [color=green]About the game:[/color]
-"
+To pass the level, you need to connect the modules correctly with wires to obtain the target signal.
+Wires cannot cross each other, and they have a direction
+
+Module 0:
+Holds 1 signal
+0 inputs
+1 output
+
+Module 1: 
+Merges the signal strength of 2 inputs.
+2 inputs
+1 output
+
+Module 2: 
+Multiplies the input by 2.
+1 input 
+1 output
+
+Module 3: 
+The goal post for levels
+1 input
+0 outputs"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="GUI/gui/HBoxContainer/guide"]
 layout_mode = 2
@@ -296,24 +321,24 @@ size_flags_vertical = 3
 visible = false
 layout_mode = 2
 focus_mode = 0
-text = "resume"
+text = "Resume"
 
 [node name="Play" type="Button" parent="GUI/gui/HBoxContainer/ui/NinePatchRect/menu"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
-text = "play"
+text = "Play"
 
 [node name="how to play" type="Button" parent="GUI/gui/HBoxContainer/ui/NinePatchRect/menu"]
 layout_mode = 2
 focus_mode = 0
-text = "how to play"
+text = "How to play"
 
 [node name="main_menu_button" type="Button" parent="GUI/gui/HBoxContainer/ui/NinePatchRect/menu"]
 visible = false
 layout_mode = 2
 focus_mode = 0
-text = "main menu"
+text = "Main menu"
 
 [node name="HSeparator2" type="HSeparator" parent="GUI/gui/HBoxContainer/ui/NinePatchRect/menu"]
 layout_mode = 2
@@ -345,6 +370,7 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 text = "sfx"
+label_settings = SubResource("LabelSettings_kmhfv")
 horizontal_alignment = 2
 
 [node name="SFXSpinBox" type="SpinBox" parent="GUI/gui/HBoxContainer/ui/NinePatchRect/menu/VBoxContainer/GridContainer"]
@@ -407,7 +433,12 @@ thanks for playing"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="joints" parent="." instance=ExtResource("4_fyndt")]
+[node name="joints" parent="." instance=ExtResource("9")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_mgm53")
+autoplay = true
+bus = &"music"
 
 [connection signal="pressed" from="GUI/gui/HBoxContainer/ui/NinePatchRect/menu/resume button" to="GUI/gui" method="open_close_menu"]
 [connection signal="pressed" from="GUI/gui/HBoxContainer/ui/NinePatchRect/menu/Play" to="GUI/gui" method="_on_play_pressed"]

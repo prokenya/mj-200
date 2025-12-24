@@ -23,10 +23,14 @@ G="*res://src/Global.gd"
 
 window/size/viewport_width=960
 window/size/viewport_height=540
+window/size/mode=2
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+window/stretch/scale_mode="integer"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/script-ide/plugin.cfg", "res://addons/simple_gdscript_formatter/plugin.cfg")
+enabled=PackedStringArray()
 
 [file_customization]
 

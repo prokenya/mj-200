@@ -8,11 +8,8 @@ var shape: SegmentShape2D
 @onready var objects: Array[SpaceObject]
 
 
-func _ready() -> void:
+func _ready() -> void :
 	create_line()
-
-#func _physics_process(delta: float) -> void:
-	#update_line()
 
 
 func update_line():
@@ -28,6 +25,9 @@ func create_line():
 	self.antialiased = true
 	self.z_index = 1
 	gradient = Gradient.new()
+	gradient.set_color(0,Color.YELLOW)
+	gradient.set_color(1,Color.BLUE)
+	
 
 	update_line()
 	update_collision()
@@ -48,6 +48,8 @@ func update_collision():
 	shape.set_deferred("a", points[0])
 	shape.set_deferred("b", points[1])
 
+func get_collider() -> CollisionShape2D:
+	return collision_shape
 
 func cut():
 	objects[0].output.erase(objects[1])

@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=4 uid="uid://b3clsc2mj417e"]
+
+[ext_resource type="PackedScene" uid="uid://cb0to8i30bvgx" path="res://src/objects/Endgame.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://bvxg0q5bviegk" path="res://src/objects/element.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://w6bl5u8kmgtd" path="res://src/objects/Dormant.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://dhrxp7j1jqxes" path="res://src/objects/merger.tscn" id="4"]
+
+[node name="world" type="Node2D"]
+
+[node name="objects" type="Node2D" parent="."]
+
+[node name="EndGame" parent="objects" instance=ExtResource("1")]
+position = Vector2(269, 130)
+rotation = 0.188766
+target_strength = 8
+
+[node name="Element" parent="objects" instance=ExtResource("2")]
+position = Vector2(271, 452)
+rotation = 0.188766
+
+[node name="Element2" parent="objects" instance=ExtResource("2")]
+position = Vector2(465, 361)
+rotation = 0.188766
+
+[node name="Dormant" parent="objects" instance=ExtResource("3")]
+position = Vector2(363, 181)
+rotation = 0.188766
+
+[node name="Merger4" parent="objects" instance=ExtResource("4")]
+position = Vector2(232, 307)
+rotation = 0.188766
+
+[node name="Dormant2" parent="objects" instance=ExtResource("3")]
+position = Vector2(329, 256)
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Give 8 signal strength to module 3"

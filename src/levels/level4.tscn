@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://3jsr271c74j5"]
+
+[ext_resource type="PackedScene" uid="uid://cb0to8i30bvgx" path="res://src/objects/Endgame.tscn" id="1_mhtge"]
+[ext_resource type="PackedScene" uid="uid://bvxg0q5bviegk" path="res://src/objects/element.tscn" id="2_52dtu"]
+[ext_resource type="PackedScene" uid="uid://w6bl5u8kmgtd" path="res://src/objects/Dormant.tscn" id="3_5prur"]
+[ext_resource type="PackedScene" uid="uid://dhrxp7j1jqxes" path="res://src/objects/merger.tscn" id="4_q8n1u"]
+
+[node name="world" type="Node2D"]
+
+[node name="objects" type="Node2D" parent="."]
+
+[node name="EndGame" parent="objects" instance=ExtResource("1_mhtge")]
+position = Vector2(470, 237)
+rotation = 0.188766
+target_strength = 20
+
+[node name="Element" parent="objects" instance=ExtResource("2_52dtu")]
+position = Vector2(482, 427)
+rotation = 0.188766
+
+[node name="Element2" parent="objects" instance=ExtResource("2_52dtu")]
+position = Vector2(801, 448)
+rotation = 0.188766
+
+[node name="Dormant" parent="objects" instance=ExtResource("3_5prur")]
+position = Vector2(756, 256)
+rotation = 0.188766
+
+[node name="Merger4" parent="objects" instance=ExtResource("4_q8n1u")]
+position = Vector2(715, 327)
+rotation = 0.188766
+
+[node name="Dormant2" parent="objects" instance=ExtResource("3_5prur")]
+position = Vector2(315, 162)
+rotation = 0.6353
+
+[node name="Dormant3" parent="objects" instance=ExtResource("3_5prur")]
+position = Vector2(571, 144)
+
+[node name="Element3" parent="objects" instance=ExtResource("2_52dtu")]
+position = Vector2(166, 414)
+
+[node name="Merger" parent="objects" instance=ExtResource("4_q8n1u")]
+position = Vector2(300, 320)
+rotation = -0.127409
+
+[node name="Dormant4" parent="objects" instance=ExtResource("3_5prur")]
+position = Vector2(77, 334)
+rotation = -0.174533
+
+[node name="Dormant5" parent="objects" instance=ExtResource("3_5prur")]
+position = Vector2(184, 254)
+rotation = 0.287979
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Give 20 signal strength to module 3"

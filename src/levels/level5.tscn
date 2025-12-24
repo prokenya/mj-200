@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgb4q0dinq4rh"]
+
+[ext_resource type="PackedScene" uid="uid://cb0to8i30bvgx" path="res://src/objects/Endgame.tscn" id="1_h0qnn"]
+[ext_resource type="PackedScene" uid="uid://bvxg0q5bviegk" path="res://src/objects/element.tscn" id="2_6vmx4"]
+[ext_resource type="PackedScene" uid="uid://w6bl5u8kmgtd" path="res://src/objects/Dormant.tscn" id="3_obhg0"]
+[ext_resource type="PackedScene" uid="uid://dhrxp7j1jqxes" path="res://src/objects/merger.tscn" id="4_dcrl1"]
+
+[node name="world" type="Node2D"]
+
+[node name="objects" type="Node2D" parent="."]
+
+[node name="EndGame" parent="objects" instance=ExtResource("1_h0qnn")]
+position = Vector2(497, 488)
+rotation = 0.188766
+target_strength = 13
+
+[node name="Element" parent="objects" instance=ExtResource("2_6vmx4")]
+position = Vector2(817, 157)
+rotation = 0.188766
+
+[node name="Element2" parent="objects" instance=ExtResource("2_6vmx4")]
+position = Vector2(839, 402)
+rotation = 0.188766
+
+[node name="Dormant" parent="objects" instance=ExtResource("3_obhg0")]
+position = Vector2(756, 256)
+rotation = 0.188766
+
+[node name="Merger4" parent="objects" instance=ExtResource("4_dcrl1")]
+position = Vector2(715, 327)
+rotation = 0.188766
+
+[node name="Dormant2" parent="objects" instance=ExtResource("3_obhg0")]
+position = Vector2(315, 162)
+rotation = 0.6353
+
+[node name="Dormant3" parent="objects" instance=ExtResource("3_obhg0")]
+position = Vector2(625, 132)
+rotation = -0.0436332
+
+[node name="Element3" parent="objects" instance=ExtResource("2_6vmx4")]
+position = Vector2(231, 243)
+
+[node name="Merger" parent="objects" instance=ExtResource("4_dcrl1")]
+position = Vector2(434, 333)
+rotation = -0.127409
+
+[node name="Dormant4" parent="objects" instance=ExtResource("3_obhg0")]
+position = Vector2(557, 26)
+rotation = -0.380482
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Give 13 signal strength to module 3"

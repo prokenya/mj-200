@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://ca5qyspdccboo"]
+
+[ext_resource type="Script" uid="uid://cw5q5kfrg5mn7" path="res://src/player/player.gd" id="1_lowyb"]
+[ext_resource type="Texture2D" uid="uid://cwq8fy2o7woj0" path="res://assets/arrow.png" id="2_gmfve"]
+[ext_resource type="Texture2D" uid="uid://b3k1kfxkxy0s4" path="res://assets/part1.png" id="3_ehvfd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mf2ua"]
+size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gmfve"]
+radius = 250.0
+
+[sub_resource type="Gradient" id="Gradient_ehvfd"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bktlc"]
+gradient = SubResource("Gradient_ehvfd")
+
+[sub_resource type="Curve" id="Curve_ehvfd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.17977536), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bktlc"]
+curve = SubResource("Curve_ehvfd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ehvfd"]
+lifetime_randomness = 0.15
+particle_flag_disable_z = true
+spread = 2.222
+initial_velocity_min = 994.94995
+initial_velocity_max = 1005.05
+gravity = Vector3(0, 0, 0)
+scale_min = 0.099999994
+scale_max = 0.29999998
+scale_curve = SubResource("CurveTexture_bktlc")
+color_ramp = SubResource("GradientTexture1D_bktlc")
+
+[sub_resource type="Gradient" id="Gradient_244u8"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5f2sf"]
+gradient = SubResource("Gradient_244u8")
+width = 32
+height = 32
+
+[node name="player" type="RigidBody2D" node_paths=PackedStringArray("particles")]
+script = ExtResource("1_lowyb")
+particles = NodePath("fire")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mf2ua")
+
+[node name="dir" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.39215687)
+position = Vector2(-1.0842022e-19, 7.6293945e-06)
+scale = Vector2(0.215, 0.215)
+texture = ExtResource("2_gmfve")
+offset = Vector2(4.230208e-12, -530.23267)
+
+[node name="gravity" type="Area2D" parent="."]
+gravity_space_override = 1
+gravity_point = true
+gravity_point_center = Vector2(0, 0)
+gravity_direction = Vector2(0, 0)
+gravity = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gravity"]
+shape = SubResource("CircleShape2D_gmfve")
+
+[node name="fire" type="GPUParticles2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.63529414)
+position = Vector2(1.2924697e-26, -9.094947e-13)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+amount = 32
+texture = ExtResource("3_ehvfd")
+lifetime = 0.45
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_ehvfd")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_5f2sf")
